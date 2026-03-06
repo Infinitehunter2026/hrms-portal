@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Attendance Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Attendance Dashboard</h1>
+
+<select id="monthFilter" onchange="fetchData()">
+  <option value="">All Months</option>
+  <option value="February">February</option>
+</select>
+
+<select id="storeFilter" onchange="fetchData()">
+  <option value="">All Stores</option>
+  <option value="Chennai">Chennai</option>
+</select>
+
+<div class="cards">
+  <div id="totalDays"></div>
+  <div id="presentDays"></div>
+  <div id="absentDays"></div>
+  <div id="attendancePercent"></div>
+</div>
+
+<table border="1" width="100%">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Check-In</th>
+      <th>Check-Out</th>
+      <th>Status</th>
+      <th>Store</th>
+    </tr>
+  </thead>
+  <tbody id="tableBody"></tbody>
+</table>
+
+<script src="script.js"></script>
+</body>
+</html>

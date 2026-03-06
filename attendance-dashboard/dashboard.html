@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Attendance Dashboard</title>
+
+<style>
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f3f4f6;
+}
+
+.header {
+    background: #0b3c5d;
+    color: white;
+    padding: 18px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.container {
+    padding: 20px 40px;
+}
+
+.filter-box {
+    margin-bottom: 15px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+select {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.summary {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.card {
+    background: white;
+    padding: 18px;
+    border-radius: 10px;
+    flex: 1;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.card span {
+    font-size: 22px;
+    font-weight: bold;
+    color: #0b3c5d;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #0b3c5d;
+    color: white;
+}
+
+@media screen and (max-width: 768px) {
+    .summary {
+        flex-direction: column;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    Attendance Dashboard
+</div>
+
+<div class="container">
+
+<div class="filter-box">
+
+    <div>
+        <label>Filter by Month:</label>
+        <select id="monthFilter">
+            <option value="">All Months</option>
+            <option value="January">January</option>
+            <option value="February">February</option>
+            <option value="March">March</option>
+            <option value="April">April</option>
+            <option value="May">May</option>
+            <option value="June">June</option>
+            <option value="July">July</option>
+            <option value="August">August</option>
+            <option value="September">September</option>
+            <option value="October">October</option>
+            <option value="November">November</option>
+            <option value="December">December</option>
+        </select>
+    </div>
+
+    <div>
+        <label>Filter by Store:</label>
+        <select id="storeFilter">
+            <option value="">All Stores</option>
+        </select>
+    </div>
+
+</div>
+
+<div class="summary">
+    <div class="card">Total Days<br><span id="totalDays">0</span></div>
+    <div class="card">Present<br><span id="presentDays">0</span></div>
+    <div class="card">Absent<br><span id="absentDays">0</span></div>
+    <div class="card">Late<br><span id="lateDays">0</span></div>
+    <div class="card">Attendance %<br><span id="percentage">0</span></div>
+</div>
+
+<table>
+<thead>
+<tr>
+    <th>Date</th>
+    <th>Check-In</th>
+    <th>Check-Out</th>
+    <th>Status</th>
+    <th>Working Hours</th>
+    <th>Store</th>
+</tr>
+</thead>
+
+<tbody id="attendanceTable"></tbody>
+</table>
+
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+let attendanceData = [];
+
+const apiURL = "https://script.google.com/macros/s/AKfycbxkvlTsjk4YbnUPf5prAS0tvnGDqbAuY0wog8nt-2ivLf9VNbARggGbrl6Bsgoz_Ewo/exec";
+
+fetch(apiURL)
+.then(res => res.json())
+.then(data => {
+
+attendanceData = data.map(record => {
+
+let actualDate =
+    record["Date"] ||
+    record["Date "] ||
+    record["date"] ||
+    record["Attendance Date"];
+
+return {
+    date: actualDate,
+    checkIn: record["Check-In"],
+    checkOut: record["Check-Out"],
+    status: record["Status"],
+    month: record["Month"] || "",
+    store: record["Store"] || "Unknown"
+};
+
+});
+
+// Populate Store Dropdown
+loadStores(attendanceData);
+
+// Show all data initially
+renderDashboard(attendanceData);
+
+})
+.catch(err => console.error("Fetch Error:", err));
+
+function loadStores(data) {
+
+let stores = [...new Set(data.map(r => r.store))];
+
+let storeSelect = document.getElementById("storeFilter");
+
+stores.forEach(s => {
+    let opt = document.createElement("option");
+    opt.value = s;
+    opt.text = s;
+    storeSelect.appendChild(opt);
+});
+
+}
+
+function renderDashboard(data) {
+
+const tableBody = document.getElementById("attendanceTable");
+tableBody.innerHTML = "";
+
+let total = data.length;
+let present = 0, absent = 0, late = 0;
+
+data.forEach(record => {
+
+if(record.status === "Present") present++;
+if(record.status === "Absent") absent++;
+if(record.status === "Late") late++;
+
+let hours = calculateHours(record.checkIn, record.checkOut);
+
+tableBody.innerHTML += `
+<tr>
+<td>${formatDate(record.date)}</td>
+<td>${formatTime(record.checkIn)}</td>
+<td>${formatTime(record.checkOut)}</td>
+<td>${record.status}</td>
+<td>${hours}</td>
+<td>${record.store}</td>
+</tr>`;
+});
+
+document.getElementById("totalDays").innerText = total;
+document.getElementById("presentDays").innerText = present;
+document.getElementById("absentDays").innerText = absent;
+document.getElementById("lateDays").innerText = late;
+
+document.getElementById("percentage").innerText =
+total > 0 ? ((present/total)*100).toFixed(2) : 0;
+
+}
+
+function applyFilters() {
+
+let selectedMonth = document.getElementById("monthFilter").value;
+let selectedStore = document.getElementById("storeFilter").value;
+
+let filtered = attendanceData;
+
+if(selectedMonth) {
+filtered = filtered.filter(r =>
+r.month &&
+r.month.toLowerCase() === selectedMonth.toLowerCase()
+);
+}
+
+if(selectedStore) {
+filtered = filtered.filter(r =>
+r.store === selectedStore
+);
+}
+
+renderDashboard(filtered);
+
+}
+
+document.getElementById("monthFilter").addEventListener("change", applyFilters);
+document.getElementById("storeFilter").addEventListener("change", applyFilters);
+
+function calculateHours(checkIn, checkOut) {
+if(!checkIn || !checkOut) return 0;
+
+let inDate = new Date(checkIn);
+let outDate = new Date(checkOut);
+
+let diff = (outDate - inDate)/(1000*60*60);
+return diff > 0 ? diff.toFixed(2) : 0;
+}
+
+function formatDate(dateStr) {
+if (!dateStr) return "N/A";
+
+let d = new Date(dateStr);
+
+if (isNaN(d.getTime())) {
+return dateStr;
+}
+
+let day = d.getDate().toString().padStart(2, '0');
+let month = (d.getMonth() + 1).toString().padStart(2, '0');
+let year = d.getFullYear();
+
+return `${day}/${month}/${year}`;
+}
+
+function formatTime(timeStr) {
+if (!timeStr) return "";
+
+let d = new Date(timeStr);
+
+if (isNaN(d.getTime())) {
+return timeStr;
+}
+
+let h = d.getHours().toString().padStart(2, '0');
+let m = d.getMinutes().toString().padStart(2, '0');
+
+return `${h}:${m}`;
+}
+
+});
+</script>
+
+</body>
+</html>

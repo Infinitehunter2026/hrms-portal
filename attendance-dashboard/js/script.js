@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+<style>
+body{
+    margin:0;
+    font-family:Segoe UI;
+    background:linear-gradient(135deg,#0b3c5d,#1e5f8a);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+.login-box{
+    background:#fff;
+    padding:35px;
+    border-radius:12px;
+    width:340px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+    text-align:center;
+}
+input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+button{
+    width:100%;
+    padding:12px;
+    background:#0b3c5d;
+    color:#fff;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    margin-top:10px;
+}
+button:hover{
+    background:#072b42;
+}
+.secondary-btn{
+    background:#1e5f8a;
+}
+.secondary-btn:hover{
+    background:#144a6d;
+}
+#msg{
+    color:red;
+    font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-box">
+<h2>Attendance Login</h2>
+
+<input type="text" id="username" placeholder="Username">
+<input type="password" id="password" placeholder="Password">
+
+<button onclick="login()">Login</button>
+
+<!-- Redirect Button -->
+<button class="secondary-btn" onclick="goDashboard()">Go to Dashboard</button>
+
+<p id="msg"></p>
+
+</div>
+
+<script>
+
+// Your Apps Script URL (stored globally for project use)
+const apiURL="https://script.google.com/macros/s/AKfycbxkvlTsjk4YbnUPf5prAS0tvnGDqbAuY0wog8nt-2ivLf9VNbARggGbrl6Bsgoz_Ewo/exec";
+
+function login(){
+
+    var u=document.getElementById("username").value.trim();
+    var p=document.getElementById("password").value.trim();
+
+    if(u==="admin" && p==="1234"){
+        sessionStorage.setItem("role","admin");
+        window.location.href="admin.html";
+    }
+    else if(u==="user" && p==="1234"){
+        sessionStorage.setItem("role","user");
+        window.location.href="dashboard.html";
+    }
+    else{
+        document.getElementById("msg").innerText="Invalid Login";
+    }
+}
+
+// Redirect Button Function
+function goDashboard(){
+    sessionStorage.setItem("role","user"); 
+    window.location.href="dashboard.html";
+}
+
+</script>
+
+</body>
+</html>

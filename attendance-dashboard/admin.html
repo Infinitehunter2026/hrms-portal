@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Segoe UI, sans-serif;
+    background:linear-gradient(135deg,#0b3c5d,#1e5f8a);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+.login-box{
+    background:#fff;
+    padding:40px 35px;
+    border-radius:14px;
+    width:350px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.25);
+    text-align:center;
+}
+
+h2{
+    margin-bottom:20px;
+    color:#0b3c5d;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin:12px 0;
+    border-radius:6px;
+    border:1px solid #ccc;
+    font-size:14px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#0b3c5d;
+    color:#fff;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    margin-top:10px;
+    font-size:15px;
+    font-weight:500;
+}
+
+button:hover{
+    background:#072b42;
+}
+
+#msg{
+    color:red;
+    font-size:14px;
+    margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-box">
+<h2>Attendance Login</h2>
+<input type="text" id="username" placeholder="Username">
+<input type="password" id="password" placeholder="Password">
+<button onclick="login()">Login</button>
+<p id="msg"></p>
+</div>
+
+<script>
+function login(){
+    var u=document.getElementById("username").value.trim();
+    var p=document.getElementById("password").value.trim();
+
+    if(u==="admin" && p==="1234"){
+        sessionStorage.setItem("role","admin");
+        window.location.href="admin.html";
+    }
+    else if(u==="user" && p==="1234"){
+        sessionStorage.setItem("role","user");
+        window.location.href="dashboard.html";
+    }
+    else{
+        document.getElementById("msg").innerText="Invalid Login";
+    }
+}
+</script>
+
+</body>
+</html>
