@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Admin Dashboard – HRMS</title>
+<title>Super Admin – HRMS</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <nav class="top-nav">
     <a href="#" class="nav-brand"><div class="nav-brand-icon">IH</div><div class="nav-brand-text"><b>Infinite Hunters</b><small>HRMS Portal</small></div></a>
     <div class="nav-right">
-        <span class="nav-role-badge badge-admin">Admin</span>
+        <span class="nav-role-badge badge-superadmin">Super Admin</span>
         <a href="login.html" class="nav-link-logout">Logout</a>
     </div>
 </nav>
@@ -26,7 +26,7 @@
         </div>
         <div class="sidebar-section">
             <div class="sidebar-label">Dashboard</div>
-            <a href="admin-dashboard.html" class="sidebar-link active"><span class="icon">📊</span> Overview</a>
+            <a href="superadmin-dashboard.html" class="sidebar-link active"><span class="icon">📊</span> Overview</a>
         </div>
         <div class="sidebar-section">
             <div class="sidebar-label">Pipeline</div>
@@ -37,20 +37,23 @@
             <a href="onboarded-list.html" class="sidebar-link"><span class="icon">👥</span> Employees <span class="badge-count">3</span></a>
         </div>
         <div class="sidebar-section">
-            <div class="sidebar-label">Tools</div>
+            <div class="sidebar-label">Administration</div>
+            <a href="#" class="sidebar-link"><span class="icon">👤</span> User Management</a>
+            <a href="#" class="sidebar-link"><span class="icon">🔐</span> Roles & Permissions</a>
+            <a href="#" class="sidebar-link"><span class="icon">⚙️</span> System Settings</a>
+            <a href="#" class="sidebar-link"><span class="icon">📦</span> Data Export</a>
             <a href="ticket.html" class="sidebar-link"><span class="icon">🎫</span> Tickets</a>
-            <a href="bank-change.html" class="sidebar-link"><span class="icon">🏦</span> Bank Change</a>
         </div>
     </aside>
     <main class="main-content">
         <div class="page-header fade-in">
             <div class="page-header-left">
-                <div class="page-eyebrow">Admin — Onboarding Team</div>
-                <h1 class="page-title">Welcome, <strong>Admin</strong></h1>
+                <div class="page-eyebrow">Super Admin</div>
+                <h1 class="page-title">Global <strong>Overview</strong></h1>
             </div>
             <div class="page-header-actions">
-                <a href="referral.html" class="btn btn-gold">+ Add Referral</a>
-                <a href="lineup.html" class="btn btn-outline">🎯 Create Lineup</a>
+                <a href="#" class="btn btn-outline btn-sm">📦 Export All Data</a>
+                <a href="#" class="btn btn-ghost btn-sm">⚙️ Settings</a>
             </div>
         </div>
 
@@ -58,40 +61,41 @@
         <div class="pipeline-bar fade-in d1">
             <a href="referral.html" class="pipeline-stage"><div class="p-number">30</div><div class="p-label">Referrals</div><span class="p-arrow">›</span></a>
             <a href="lineup.html" class="pipeline-stage"><div class="p-number">5</div><div class="p-label">Lineup</div><span class="p-arrow">›</span></a>
-            <a href="selected.html" class="pipeline-stage active"><div class="p-number">3</div><div class="p-label">Selected</div><span class="p-arrow">›</span></a>
+            <a href="selected.html" class="pipeline-stage"><div class="p-number">3</div><div class="p-label">Selected</div><span class="p-arrow">›</span></a>
             <a href="onboarded-list.html" class="pipeline-stage"><div class="p-number">3</div><div class="p-label">Onboarded</div></a>
         </div>
 
-        <!-- KPI TILES -->
+        <!-- KPI STATS -->
         <div class="stats-grid fade-in d2">
-            <div class="stat-card"><div class="stat-number">30</div><div class="stat-label">Total Referrals</div></div>
-            <div class="stat-card blue"><div class="stat-number">5</div><div class="stat-label">In Lineup</div></div>
-            <div class="stat-card"><div class="stat-number">3</div><div class="stat-label">Selected</div></div>
-            <div class="stat-card green"><div class="stat-number">3</div><div class="stat-label">Onboarded</div></div>
+            <div class="stat-card"><div class="stat-number">60%</div><div class="stat-label">Referral → Lineup</div></div>
+            <div class="stat-card"><div class="stat-number">60%</div><div class="stat-label">Lineup → Selected</div></div>
+            <div class="stat-card green"><div class="stat-number">5d</div><div class="stat-label">Avg. Time to Onboard</div></div>
+            <div class="stat-card blue"><div class="stat-number">100%</div><div class="stat-label">Docs Completion</div></div>
         </div>
 
         <!-- QUICK ACTIONS -->
         <div class="card fade-in d3">
             <div class="card-header"><h3>Quick Actions</h3></div>
             <div class="card-body" style="display:flex;gap:10px;flex-wrap:wrap">
-                <a href="referral.html" class="btn btn-gold btn-sm">📋 Add Referral</a>
-                <a href="referral.html" class="btn btn-outline btn-sm">📁 Import CSV</a>
-                <a href="lineup.html" class="btn btn-outline btn-sm">🎯 Create Lineup</a>
-                <a href="onboardingsample.html" class="btn btn-success btn-sm">🚀 Start Onboarding</a>
+                <a href="referral.html" class="btn btn-gold">📋 Manage Referrals</a>
+                <a href="lineup.html" class="btn btn-outline">🎯 Create Lineup</a>
+                <a href="onboardingsample.html" class="btn btn-outline">🚀 Start Onboarding</a>
+                <a href="#" class="btn btn-ghost">👤 User Management</a>
+                <a href="#" class="btn btn-ghost">📊 View Reports</a>
             </div>
         </div>
 
-        <!-- RECENT ACTIVITY -->
+        <!-- RECRUITER PERFORMANCE -->
         <div class="card fade-in d4" style="margin-top:20px">
-            <div class="card-header"><h3>Recent Pipeline Activity</h3></div>
+            <div class="card-header"><h3>Recruiter Performance</h3></div>
             <div class="card-body" style="padding:0">
                 <div class="table-wrap">
                     <table>
-                        <thead><tr><th>Candidate</th><th>Client</th><th>Status</th><th>Updated</th><th>Action</th></tr></thead>
+                        <thead><tr><th>Recruiter</th><th>Referrals</th><th>Selected</th><th>Onboarded</th><th>Conversion</th></tr></thead>
                         <tbody>
-                            <tr><td>Ravi Kumar</td><td>Swiggy</td><td><span class="status-badge status-selected">Selected</span></td><td>Today</td><td><a href="onboardingsample.html" class="btn btn-gold btn-sm">Onboard</a></td></tr>
-                            <tr><td>Anita Sharma</td><td>Zomato</td><td><span class="status-badge status-selected">Selected</span></td><td>Today</td><td><a href="onboardingsample.html" class="btn btn-gold btn-sm">Onboard</a></td></tr>
-                            <tr><td>Karthik R</td><td>Amazon</td><td><span class="status-badge status-lineup">Lineup</span></td><td>Yesterday</td><td><a href="selected.html" class="btn btn-outline btn-sm">Review</a></td></tr>
+                            <tr><td>Swiggy Team</td><td>12</td><td>4</td><td>3</td><td><span class="status-badge status-onboarded">25%</span></td></tr>
+                            <tr><td>Zepto Team</td><td>10</td><td>3</td><td>2</td><td><span class="status-badge status-selected">20%</span></td></tr>
+                            <tr><td>Freelancer Pool</td><td>8</td><td>2</td><td>1</td><td><span class="status-badge status-referred">13%</span></td></tr>
                         </tbody>
                     </table>
                 </div>

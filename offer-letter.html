@@ -1,112 +1,13 @@
-<style>
-:root {
-    --navy: #0a3d62;
-    --bg: #f4f6f9;
-    --border: #d6dde6;
-    --text: #2f3542;
-}
-
-body {
-    margin: 0;
-    font-family: "Segoe UI", Arial, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-}
-
-/* CONTENT */
-.content {
-    padding: 35px 20px;
-}
-
-/* PAGE TITLE */
-.content h2 {
-    text-align: center;
-    color: var(--navy);
-    font-size: 24px;
-    margin-bottom: 25px;
-}
-
-/* CARD */
-.card {
-    background: white;
-    max-width: 900px;
-    margin: auto;
-    padding: 25px 30px;
-    border-radius: 8px;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-}
-
-/* HEADER */
-.card-header {
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--navy);
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 10px;
-    margin-bottom: 18px;
-}
-
-/* INFO */
-.info {
-    font-size: 14px;
-    color: #4b5563;
-    margin-bottom: 22px;
-    line-height: 1.6;
-}
-
-/* ACTIONS */
-.actions {
-    display: flex;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.btn {
-    padding: 11px 22px;
-    font-size: 14px;
-    font-weight: 600;
-    border-radius: 4px;
-    cursor: pointer;
-    border: none;
-}
-
-/* PRIMARY */
-.btn-primary {
-    background: var(--navy);
-    color: white;
-}
-
-/* SECONDARY */
-.btn-secondary {
-    background: white;
-    color: var(--navy);
-    border: 1px solid var(--border);
-}
-
-.btn-primary:hover {
-    opacity: 0.9;
-}
-
-.btn-secondary:hover {
-    background: #f0f3f7;
-}
-</style>
-
-<div class="content">
-    <h2>Offer Letter</h2>
-
-    <div class="card">
-        <div class="card-header">Offer Letter Document</div>
-
-        <div class="info">
-            Your official offer letter is available below.  
-            Please download and review the document carefully.  
-            If you notice any discrepancies, raise an issue with HR.
-        </div>
-
-        <div class="actions">
-            <button class="btn btn-primary">Download Offer Letter</button>
-            <button class="btn btn-secondary">Raise Issue</button>
-        </div>
-    </div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Offer Letter – HRMS</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<nav class="top-nav"><a href="#" class="nav-brand"><div class="nav-brand-icon">IH</div><div class="nav-brand-text"><b>Infinite Hunters</b><small>HRMS Portal</small></div></a><div class="nav-right"><span class="nav-role-badge badge-employee">Employee</span><a href="login.html" class="nav-link-logout">Logout</a></div></nav>
+<div class="app-layout">
+<aside class="sidebar"><div class="sidebar-section"><div class="sidebar-label">My Portal</div><a href="employee-dashboard.html" class="sidebar-link"><span class="icon">📊</span> Dashboard</a><a href="payslip.html" class="sidebar-link"><span class="icon">💰</span> Payslip</a><a href="offer-letter.html" class="sidebar-link active"><span class="icon">📄</span> Offer Letter</a><a href="ticket.html" class="sidebar-link"><span class="icon">🎫</span> Ticket</a><a href="bank-change.html" class="sidebar-link"><span class="icon">🏦</span> Bank Change</a></div></aside>
+<main class="main-content">
+<div class="page-header fade-in"><div class="page-header-left"><div class="page-eyebrow">Documents</div><h1 class="page-title">Offer <strong>Letter</strong></h1></div></div>
+<div class="card fade-in d1" style="max-width:700px"><div class="card-header"><h3>Offer Letter Document</h3></div><div class="card-body">
+<p style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:22px">Your official offer letter is available below. Download and review carefully. If you notice any discrepancies, raise an issue.</p>
+<div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn btn-gold">📥 Download Offer Letter</button><button class="btn btn-outline">🎫 Raise Issue</button></div>
+</div></div></main></div></body></html>

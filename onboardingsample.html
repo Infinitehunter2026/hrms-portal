@@ -1,551 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Infinite Hunters – Employee Onboarding</title>
-
-<style>
-body {
-    font-family: "Times New Roman", serif;
-    background:#f2f4f7;
-    padding:20px;
-    font-size: 15px;
-    color: navy;
-}
-.container {
-    background:#fff;
-    padding:25px 30px;
-    border-radius:8px;
-    max-width:1100px;
-    margin:auto;
-    border:2px solid navy;
-    box-shadow:0 4px 12px rgba(0,0,0,0.08);
-}
-h2 {
-    text-align:center;
-    background: navy;
-    color:#fff;
-    padding:15px;
-    font-size: 20px;
-    border-radius:4px;
-    margin-bottom:25px;
-}
-h3 {
-    border-bottom:2px solid navy;
-    padding-bottom:6px;
-    font-size: 17px;
-    color: navy;
-    margin-bottom:12px;
-}
-.section {
-    margin-bottom:25px;
-}
-label {
-    font-weight:bold;
-    display:block;
-    margin-top:10px;
-    font-size: 15px;
-}
-input, select {
-    width:100%;
-    padding:8px 9px;
-    margin-top:4px;
-    font-family: "Times New Roman", serif;
-    font-size: 15px;
-    border:1px solid navy;
-    border-radius:4px;
-    box-sizing:border-box;
-}
-.row {
-    display:flex;
-    gap:8px;
-    align-items:center;
-}
-.add-btn {
-    padding:7px 14px;
-    background: navy;
-    color:#fff;
-    border:none;
-    cursor:pointer;
-    font-size: 15px;
-    border-radius:4px;
-}
-.hidden {
-    display:none;
-}
-.submit-btn {
-    display:block;
-    margin:20px auto 0;
-    background: navy;
-    color:#fff;
-    padding:12px 40px;
-    border:none;
-    cursor:pointer;
-    font-size: 16px;
-    border-radius:6px;
-    font-weight:bold;
-}
-.submit-btn:hover { background:navy; }
-.grid-2 { display:grid; grid-template-columns: 1fr 1fr; gap:15px 20px; }
-</style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Employee Onboarding – HRMS</title>
+<link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-    <nav style="background:#0a3d62;padding:10px;text-align:center;">
-    <a href="/referral" style="color:white;margin:0 10px;">Referral</a>
-    <a href="/lineup" style="color:white;margin:0 10px;">Lineup</a>
-    <a href="/onboardingsample" style="color:white;margin:0 10px;">Onboardingsample</a>
-    <a href="/onboarded-list" style="color:white;margin:0 10px;">Onboarded</a>
-    <a href="/bank-change" style="color:white;margin:0 10px;">Bank Change</a>
-    <a href="/logout" style="color:#ffd700;margin-left:20px;">Logout</a>
+<nav class="top-nav">
+    <a href="#" class="nav-brand"><div class="nav-brand-icon">IH</div><div class="nav-brand-text"><b>Infinite Hunters</b><small>HRMS Portal</small></div></a>
+    <div class="nav-right"><span class="nav-role-badge badge-admin">Admin</span><a href="login.html" class="nav-link-logout">Logout</a></div>
 </nav>
+<div class="app-layout">
+    <aside class="sidebar">
+        <div class="pipeline-indicator"><h4>Pipeline</h4><div class="pipeline-steps">
+            <div class="pipeline-step done"><div class="pipeline-dot"></div> Referrals <span class="step-count">30</span></div>
+            <div class="pipeline-step done"><div class="pipeline-dot"></div> Lineup <span class="step-count">5</span></div>
+            <div class="pipeline-step done"><div class="pipeline-dot"></div> Selected <span class="step-count">3</span></div>
+            <div class="pipeline-step active"><div class="pipeline-dot"></div> Onboarding</div>
+        </div></div>
+        <div class="sidebar-section"><div class="sidebar-label">Dashboard</div><a href="admin-dashboard.html" class="sidebar-link"><span class="icon">📊</span> Overview</a></div>
+        <div class="sidebar-section"><div class="sidebar-label">Pipeline</div>
+            <a href="referral.html" class="sidebar-link"><span class="icon">📋</span> Referrals</a>
+            <a href="lineup.html" class="sidebar-link"><span class="icon">🎯</span> Lineup</a>
+            <a href="selected.html" class="sidebar-link"><span class="icon">✅</span> Selected</a>
+            <a href="onboardingsample.html" class="sidebar-link active"><span class="icon">🚀</span> Onboarding</a>
+            <a href="onboarded-list.html" class="sidebar-link"><span class="icon">👥</span> Employees</a>
+        </div>
+    </aside>
+    <main class="main-content">
+        <div class="page-header fade-in">
+            <div class="page-header-left">
+                <div class="page-eyebrow">Pipeline → Step 4 — Onboarding</div>
+                <h1 class="page-title">Employee <strong>Onboarding Form</strong></h1>
+            </div>
+        </div>
 
+        <div class="card fade-in d1">
+            <div class="card-header"><h3>Complete Onboarding Registration</h3></div>
+            <div class="card-body">
+                <form action="/submit-onboarding" method="POST" enctype="multipart/form-data">
 
-<div class="container">
-<h2>Infinite Hunters – Employee Onboarding (Admin)</h2>
+                    <!-- 1. SOURCE & AUDIT -->
+                    <div class="section-title"><span class="icon">📋</span> Source & Audit Details</div>
+                    <div class="form-grid">
+                        <div class="form-group"><label class="form-label">Email (Collector) *</label><input type="email" name="email" class="form-input" placeholder="admin@infinitehunters.in" required></div>
+                        <div class="form-group"><label class="form-label">Date of Upload *</label><input type="date" name="dateOfUpload" class="form-input" required></div>
+                        <div class="form-group"><label class="form-label">Sourced By *</label>
+                            <select name="sourcedBy" class="form-select" required><option value="">Select</option><option>Recruiter</option><option>Freelancer</option></select></div>
+                        <div class="form-group"><label class="form-label">Recruiter Name *</label>
+                            <div class="form-row"><select id="recruiterSelect" name="recruiter" class="form-select" required><option value="">Select</option><option>Swiggy</option><option>Zepto</option><option>Zomato</option></select><button type="button" class="btn-add" onclick="addDrop('recruiterSelect')">+</button></div></div>
+                    </div>
 
-<!-- Updated form with action, method, enctype -->
-<form action="http://localhost:3000/submit-onboarding" method="POST" enctype="multipart/form-data">
+                    <!-- 2. CLIENT & LOCATION -->
+                    <div class="section-title"><span class="icon">🏢</span> Client & Location</div>
+                    <div class="form-grid">
+                        <div class="form-group"><label class="form-label">Client *</label>
+                            <div class="form-row"><select id="clientSelect" name="client" class="form-select" required><option value="">Select</option><option>Swiggy - Instamart</option><option>Zepto - Kirana Kart</option></select><button type="button" class="btn-add" onclick="addDrop('clientSelect')">+</button></div></div>
+                        <div class="form-group"><label class="form-label">State *</label>
+                            <div class="form-row"><select name="state" class="form-select" required><option value="">Select</option><option>Tamil Nadu</option><option>Karnataka</option><option>Maharashtra</option><option>Telangana</option><option>Andhra Pradesh</option><option>Delhi</option></select></div></div>
+                        <div class="form-group"><label class="form-label">City *</label>
+                            <div class="form-row"><select name="city" class="form-select" required><option value="">Select</option><option>Chennai</option><option>Bangalore</option><option>Hyderabad</option><option>Mumbai</option><option>Delhi</option></select></div></div>
+                        <div class="form-group"><label class="form-label">Working Location *</label><input type="text" name="workingLocation" class="form-input" placeholder="Exact work site" required></div>
+                    </div>
 
-<!-- SECTION 1: Basic Details -->
-<div class="section">
-<h3>Basic Details</h3>
-<div class="grid-2">
-<div>
-<label>Email *</label>
-<input type="email" name="email" required>
-</div>
-<div>
-<label>Date of Upload *</label>
-<input type="date" name="dateOfUpload" required>
-</div>
-</div>
+                    <!-- 3. PAYROLL & WORK -->
+                    <div class="section-title"><span class="icon">💼</span> Payroll & Work Specifics</div>
+                    <div class="form-grid">
+                        <div class="form-group"><label class="form-label">Payroll Type *</label>
+                            <select name="payroll" class="form-select" required><option>Contractual Worker</option><option>NAPS</option></select></div>
+                        <div class="form-group"><label class="form-label">Work Type *</label>
+                            <select name="workType" class="form-select" required><option>Full-Time</option><option>Part-Time</option></select></div>
+                        <div class="form-group"><label class="form-label">Designation *</label>
+                            <select name="designation" class="form-select" required><option>Picker</option><option>Packer</option><option>Loader</option><option>Delivery Executive</option><option>Store Executive</option><option>Shift Incharge</option></select></div>
+                        <div class="form-group"><label class="form-label">Date of Joining *</label><input type="date" name="doj" class="form-input" required></div>
+                    </div>
 
-<label>Sourced By *</label>
-<select name="sourcedBy" required>
-    <option value="">Select</option>
-    <option>Recruiter</option>
-    <option>Freelancer</option>
-</select>
-</div>
+                    <!-- 4. EMPLOYEE DETAILS -->
+                    <div class="section-title"><span class="icon">👤</span> Employee Details</div>
+                    <div class="form-grid">
+                        <div class="form-group"><label class="form-label">Employee Name (as per Aadhar) *</label><input type="text" name="employeeName" class="form-input" placeholder="Must match Aadhar card" required></div>
+                        <div class="form-group"><label class="form-label">Employee Mobile *</label><input type="tel" name="mobile" class="form-input" placeholder="10-digit" required></div>
+                        <div class="form-group"><label class="form-label">Emergency Mobile *</label><input type="tel" name="emergencyMobile" class="form-input" required></div>
+                        <div class="form-group"><label class="form-label">Email ID</label><input type="email" name="emailId" class="form-input"></div>
+                        <div class="form-group"><label class="form-label">DOB *</label><input type="date" name="dob" class="form-input" required></div>
+                        <div class="form-group"><label class="form-label">Gender *</label>
+                            <select name="gender" class="form-select" required><option>Male</option><option>Female</option><option>Other</option></select></div>
+                        <div class="form-group"><label class="form-label">Marital Status *</label>
+                            <select name="maritalStatus" class="form-select" required><option>Unmarried</option><option>Married</option></select></div>
+                        <div class="form-group"><label class="form-label">Father / Husband Name *</label><input type="text" name="fatherName" class="form-input" required></div>
+                        <div class="form-group full-width"><label class="form-label">Permanent Address *</label><input type="text" name="permanentAddress" class="form-input" required></div>
+                        <div class="form-group full-width"><label class="form-label">Present Address</label><input type="text" name="presentAddress" class="form-input"></div>
+                    </div>
 
-<!-- SECTION 2: Recruiter Details -->
-<div class="section">
-<h3>Recruiter Details</h3>
-<label>Recruiter *</label>
-<div class="row">
-    <select id="recruiterSelect" name="recruiter" required>
-        <option value="">Select</option>
-        <option>Swiggy</option>
-        <option>Zepto</option>
-    </select>
-    <button type="button" class="add-btn" onclick="showInput('recruiterInput')">+</button>
-</div>
-<input id="recruiterInput" class="hidden" placeholder="Add Recruiter"
-onblur="addToDropdown('recruiterSelect','recruiterInput')">
-</div>
+                    <!-- 5. IDs & DOCUMENTS -->
+                    <div class="section-title"><span class="icon">🪪</span> ID Documents</div>
+                    <div class="form-grid">
+                        <div class="form-group"><label class="form-label">Aadhar Number *</label><input type="text" name="aadharNumber" class="form-input" placeholder="12 digits" maxlength="12" required></div>
+                        <div class="form-group"><label class="form-label">Aadhar Front Scan *</label><input type="file" name="aadharFront" class="form-input" accept=".jpg,.png,.pdf" required></div>
+                        <div class="form-group"><label class="form-label">Aadhar Back Scan *</label><input type="file" name="aadharBack" class="form-input" accept=".jpg,.png,.pdf" required></div>
+                        <div class="form-group"><label class="form-label">PAN Number</label><input type="text" name="pan" class="form-input" placeholder="ABCDE1234F" maxlength="10"></div>
+                        <div class="form-group"><label class="form-label">PAN Card Scan</label><input type="file" name="panScan" class="form-input" accept=".jpg,.png,.pdf"></div>
+                        <div class="form-group"><label class="form-label">UAN Number</label><input type="text" name="uan" class="form-input" placeholder="Universal Account Number"></div>
+                        <div class="form-group"><label class="form-label">ESI Number</label><input type="text" name="esi" class="form-input" placeholder="ESI Number"></div>
+                        <div class="form-group"><label class="form-label">Driving License (Front)</label><input type="file" name="dlFront" class="form-input" accept=".jpg,.png,.pdf"></div>
+                        <div class="form-group"><label class="form-label">Driving License (Back)</label><input type="file" name="dlBack" class="form-input" accept=".jpg,.png,.pdf"></div>
+                    </div>
 
-<!-- SECTION 3: Client Details -->
-<div class="section">
-<h3>Client Details</h3>
-<label>Client *</label>
-<div class="row">
-    <select id="clientSelect" name="client" required>
-        <option value="">Select</option>
-        <option>Swiggy - Instamart</option>
-        <option>Zepto - Kirana Kart</option>
-    </select>
-    <button type="button" class="add-btn" onclick="showInput('clientInput')">+</button>
-</div>
-<input id="clientInput" class="hidden" placeholder="Add Client"
-onblur="addToDropdown('clientSelect','clientInput')">
-</div>
+                    <!-- 6. BANK DETAILS -->
+                    <div class="section-title"><span class="icon">🏦</span> Bank Details</div>
+                    <div class="form-grid">
+                        <div class="form-group"><label class="form-label">Bank Name *</label><input type="text" name="bankName" class="form-input" required></div>
+                        <div class="form-group"><label class="form-label">Bank Account Number *</label><input type="text" name="accountNumber" class="form-input" required></div>
+                        <div class="form-group"><label class="form-label">IFSC Code *</label><input type="text" name="ifsc" class="form-input" placeholder="ABCD0123456" required></div>
+                        <div class="form-group"><label class="form-label">Passbook / Cheque Leaf *</label><input type="file" name="passbook" class="form-input" accept=".jpg,.png,.pdf" required></div>
+                    </div>
 
-<!-- SECTION 4: Location -->
-<div class="section">
-<h3>Location</h3>
-<div class="grid-2">
-<div>
-<label>State *</label>
-<div class="row">
-    <select id="stateSelect" name="state" required>
-        <option value="">Select</option>
-        <option>Tamil Nadu</option>
-        <option>Telangana</option>
-    </select>
-    <button type="button" class="add-btn" onclick="showInput('stateInput')">+</button>
-</div>
-<input id="stateInput" class="hidden" placeholder="Add State"
-onblur="addToDropdown('stateSelect','stateInput')">
-</div>
+                    <!-- 7. PHOTOS & OFFER -->
+                    <div class="section-title"><span class="icon">📎</span> Photos & Offer Letter</div>
+                    <div class="form-grid">
+                        <div class="form-group"><label class="form-label">Passport Photo *</label><input type="file" name="passportPhoto" class="form-input" accept=".jpg,.png" required></div>
+                        <div class="form-group"><label class="form-label">Offer Letter Upload</label><input type="file" name="offerLetter" class="form-input" accept=".pdf,.jpg,.png"></div>
+                    </div>
 
-<div>
-<label>City *</label>
-<div class="row">
-    <select id="citySelect" name="city" required>
-        <option value="">Select</option>
-        <option>Chennai</option>
-        <option>Hyderabad</option>
-    </select>
-    <button type="button" class="add-btn" onclick="showInput('cityInput')">+</button>
-</div>
-<input id="cityInput" class="hidden" placeholder="Add City"
-onblur="addToDropdown('citySelect','cityInput')">
-</div>
-</div>
-</div>
+                    <!-- CONSENT -->
+                    <div class="note" style="margin:20px 0 0">
+                        <label style="display:flex;align-items:flex-start;gap:8px;cursor:pointer;font-size:12px;color:var(--muted)">
+                            <input type="checkbox" required style="margin-top:2px;accent-color:var(--gold)">
+                            I consent to the collection and processing of the above personal data by Infinite Hunters Multi Service Pvt Ltd for employment and statutory compliance purposes, in accordance with applicable data protection laws.
+                        </label>
+                    </div>
 
-<!-- SECTION 5: Employee Details -->
-<div class="section">
-<h3>Employee Details</h3>
-<div class="grid-2">
-<div>
-<label>Working Location *</label>
-<input type="text" name="workingLocation" required>
-</div>
-<div>
-<label>Payroll *</label>
-<select name="payroll" required>
-    <option>Contractual Worker</option>
-    <option>NAPS</option>
-</select>
-</div>
-</div>
-
-<label>Designation *</label>
-<select name="designation" required>
-    <option>Picker</option>
-    <option>Packer</option>
-    <option>Loader</option>
-    <option>Delivery Executive</option>
-    <option>Shift Incharge</option>
-</select>
-
-<div class="grid-2">
-<div>
-<label>Employee Name (As per Aadhar) *</label>
-<input type="text" name="employeeName" required>
-</div>
-<div>
-<label>Mobile *</label>
-<input type="tel" name="mobile" required>
-</div>
-</div>
-
-<div class="grid-2">
-<div>
-<label>Emergency Mobile *</label>
-<input type="tel" name="emergencyMobile" required>
-</div>
-<div>
-<label>Alternate Email (Optional)</label>
-<input type="email" name="alternateEmail">
-</div>
-</div>
-
-<div class="grid-2">
-<div>
-<label>DOB *</label>
-<input type="date" name="dob" required>
-</div>
-<div>
-<label>Gender *</label>
-<select name="gender" required>
-    <option>Male</option>
-    <option>Female</option>
-</select>
-</div>
-</div>
-
-<div class="grid-2">
-<div>
-<label>Marital Status *</label>
-<select name="maritalStatus" required>
-    <option>Married</option>
-    <option>Unmarried</option>
-</select>
-</div>
-<div>
-<label>Date of Joining *</label>
-<input type="date" name="doj" required>
-</div>
-</div>
-
-<label>Father / Husband Name *</label>
-<input type="text" name="fatherName" required>
-
-<label>Permanent Address *</label>
-<input type="text" name="permanentAddress" required>
-
-<label>Present Address</label>
-<input type="text" name="presentAddress">
-</div>
-
-<!-- SECTION 6: Attachments -->
-<div class="section">
-<h3>Attachments</h3>
-<div class="grid-2">
-<div>
-<label>Aadhar Number *</label>
-<input type="text" name="aadharNumber" required>
-</div>
-<div>
-<label>Bank Name *</label>
-<input type="text" name="bankName" required>
-</div>
-</div>
-
-<div class="grid-2">
-<div>
-<label>Bank Account Number *</label>
-<input type="text" name="accountNumber" required>
-</div>
-<div>
-<label>IFSC Code *</label>
-<input type="text" name="ifsc" required>
-</div>
-</div>
-
-<label>Passport Photo *</label>
-<input type="file" name="passportPhoto" required>
-
-<label>Passbook / Cheque Leaf *</label>
-<input type="file" name="passbook" required>
-</div>
-
-<button type="submit" class="submit-btn">Submit & Onboard</button>
-</form>
+                    <div style="text-align:center;margin-top:24px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+                        <button type="submit" class="btn btn-success" style="padding:12px 36px;font-size:13px">✅ Submit & Onboard →</button>
+                        <button type="button" class="btn btn-ghost" onclick="window.location.href='selected.html'">← Back to Selected</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
 </div>
 <script>
-document.querySelector("form").addEventListener("submit", function (e) {
-    e.preventDefault();
-    const form = this;
-
-    // ===============================
-    // Helper: Get input by label
-    // ===============================
-    function getInput(labelText) {
-        const labels = document.querySelectorAll("label");
-        for (let lbl of labels) {
-            if (lbl.textContent.trim() === labelText) {
-                return lbl.nextElementSibling;
-            }
-        }
-        return null;
-    }
-
-    // ===============================
-    // 1️⃣ Mandatory field validation
-    // ===============================
-    const requiredFields = form.querySelectorAll("input[required], select[required]");
-    for (let field of requiredFields) {
-        if (field.type === "file") {
-            if (!field.files.length) {
-                alert("Please upload " + field.previousElementSibling.textContent);
-                field.focus();
-                return;
-            }
-        } else if (!field.value.trim()) {
-            alert("Please fill " + field.previousElementSibling.textContent);
-            field.focus();
-            return;
-        }
-    }
-
-    // ===============================
-    // 2️⃣ Email validation
-    // ===============================
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const emails = form.querySelectorAll('input[type="email"]');
-    for (let email of emails) {
-        if (email.value && !emailRegex.test(email.value.trim())) {
-            alert("Invalid email format");
-            email.focus();
-            return;
-        }
-    }
-
-    // ===============================
-    // 3️⃣ Mobile validation
-    // ===============================
-    const mobile = getInput("Mobile *");
-    const emergency = getInput("Emergency Mobile *");
-    const mobileRegex = /^[6-9]\d{9}$/;
-
-    if (!mobileRegex.test(mobile.value)) {
-        alert("Mobile number must be 10 digits and start with 6-9");
-        mobile.focus();
-        return;
-    }
-
-    if (!mobileRegex.test(emergency.value)) {
-        alert("Emergency mobile number is invalid");
-        emergency.focus();
-        return;
-    }
-
-    if (mobile.value === emergency.value) {
-        alert("Emergency mobile cannot be same as mobile number");
-        emergency.focus();
-        return;
-    }
-
-    // ===============================
-    // 4️⃣ Aadhar validation
-    // ===============================
-    const aadhar = getInput("Aadhar Number *");
-    if (!/^\d{12}$/.test(aadhar.value)) {
-        alert("Aadhar number must be exactly 12 digits");
-        aadhar.focus();
-        return;
-    }
-
-    // ===============================
-    // 5️⃣ IFSC + Bank Name validation
-    // ===============================
-    const bankName = getInput("Bank Name *").value.trim().toUpperCase();
-    const ifscInput = getInput("IFSC Code *");
-    ifscInput.value = ifscInput.value.toUpperCase();
-
-    const ifsc = ifscInput.value;
-
-    if (!/^[A-Z]{4}0[A-Z0-9]{6}$/.test(ifsc)) {
-        alert("Invalid IFSC code format");
-        ifscInput.focus();
-        return;
-    }
-
-    const bankIfscMap = {
-        "STATE BANK OF INDIA": "SBIN",
-        "HDFC BANK": "HDFC",
-        "ICICI BANK": "ICIC",
-        "AXIS BANK": "UTIB",
-        "KOTAK MAHINDRA BANK": "KKBK",
-        "PUNJAB NATIONAL BANK": "PUNB",
-        "CANARA BANK": "CNRB",
-        "BANK OF BARODA": "BARB"
-    };
-
-    let matched = false;
-    for (let bank in bankIfscMap) {
-        if (bankName.includes(bank)) {
-            if (!ifsc.startsWith(bankIfscMap[bank])) {
-                alert("Bank name and IFSC code do not match");
-                ifscInput.focus();
-                return;
-            }
-            matched = true;
-        }
-    }
-
-    if (!matched) {
-        alert("Bank name not recognized. Please enter correct bank name");
-        getInput("Bank Name *").focus();
-        return;
-    }
-
-    // ===============================
-    // 6️⃣ Bank account validation
-    // ===============================
-    const account = getInput("Bank Account Number *");
-    if (!/^\d{9,18}$/.test(account.value)) {
-        alert("Bank account number must be numeric (9–18 digits)");
-        account.focus();
-        return;
-    }
-
-    // ===============================
-    // 7️⃣ DOB < DOJ validation
-    // ===============================
-    const dob = new Date(getInput("DOB *").value);
-    const doj = new Date(getInput("Date of Joining *").value);
-
-    if (dob >= doj) {
-        alert("DOB must be earlier than Date of Joining");
-        getInput("DOB *").focus();
-        return;
-    }
-
-    // ===============================
-    // 8️⃣ Image quality & blur detection
-    // ===============================
-    function validateImage(file, label, callback) {
-        const allowedTypes = ["image/jpeg", "image/png"];
-
-        if (!allowedTypes.includes(file.type)) {
-            alert(label + " must be JPG or PNG");
-            return;
-        }
-
-        if (file.size > 2 * 1024 * 1024) {
-            alert(label + " must be less than 2 MB");
-            return;
-        }
-
-        if (file.size < 100 * 1024) {
-            alert(label + " image is too small and unclear");
-            return;
-        }
-
-        const img = new Image();
-        const reader = new FileReader();
-
-        reader.onload = function (e) {
-            img.onload = function () {
-                if (img.width < 600 || img.height < 600) {
-                    alert(label + " resolution is too low. Upload a clear image");
-                    return;
-                }
-
-                const canvas = document.createElement("canvas");
-                const ctx = canvas.getContext("2d");
-                canvas.width = img.width;
-                canvas.height = img.height;
-                ctx.drawImage(img, 0, 0);
-
-                const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
-                let variance = 0;
-
-                for (let i = 0; i < data.length; i += 4) {
-                    variance += Math.abs(data[i] - data[i + 1]);
-                }
-
-                if (variance / (data.length / 4) < 15) {
-                    alert(label + " is blurred. Please upload a clear image");
-                    return;
-                }
-
-                callback();
-            };
-            img.src = e.target.result;
-        };
-
-        reader.readAsDataURL(file);
-    }
-
-    const passport = document.querySelector('input[name="passportPhoto"]').files[0];
-    const passbook = document.querySelector('input[name="passbook"]').files[0];
-
-    validateImage(passport, "Passport Photo", function () {
-        validateImage(passbook, "Passbook / Cheque Leaf", function () {
-
-            // ===============================
-            // ✅ FINAL SUBMISSION
-            // ===============================
-            alert("All validations passed. Onboarding submitted successfully.");
-            form.submit();
-        });
-    });
-});
+function addDrop(id){let v=prompt("Add new option:");if(!v)return;v=v.trim();const s=document.getElementById(id);const o=document.createElement("option");o.value=v;o.text=v;s.add(o);s.value=v;}
 </script>
-
-
-
-
-
-
-
 </body>
-
-
-</html>  
+</html>

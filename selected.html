@@ -1,244 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Selected Candidates – Admin Panel</title>
-
-<style>
-body{
-    font-family:"Times New Roman", Times, serif;
-    background:#f2f4f7;
-    padding:20px;
-}
-
-.container{
-    max-width:1200px;
-    margin:auto;
-    background:#fff;
-    padding:20px;
-    border-radius:8px;
-    box-shadow:0 4px 12px rgba(0,0,0,0.1);
-}
-
-h2{
-    background:#000080;
-    color:#fff;
-    padding:12px;
-    text-align:center;
-    border-radius:6px;
-    margin-bottom:25px;
-}
-
-/* DASHBOARD BOXES */
-.dashboard{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
-    margin-bottom:25px;
-}
-
-.box{
-    background:#e9edf7;
-    padding:18px;
-    text-align:center;
-    border-radius:8px;
-}
-
-.box h4{
-    margin:0;
-    font-size:16px;
-    color:#000080;
-}
-
-.box p{
-    margin-top:8px;
-    font-size:20px;
-    font-weight:bold;
-}
-
-/* TABLE */
-table{
-    width:100%;
-    border-collapse:collapse;
-    font-size:16px;
-}
-
-th,td{
-    border:1px solid #ccc;
-    padding:8px;
-    text-align:center;
-}
-
-th{
-    background:#cce0ff;
-    color:#000080;
-}
-
-select{
-    padding:4px;
-    font-size:14px;
-}
-
-button{
-    background:#000080;
-    color:#fff;
-    border:none;
-    padding:6px 12px;
-    border-radius:4px;
-    cursor:pointer;
-    font-size:14px;
-}
-
-button:hover{
-    background:#000060;
-}
-
-/* QUICK UPDATE */
-.quick-update{
-    margin-top:30px;
-    padding:20px;
-    background:#f7f9fc;
-    border-radius:8px;
-}
-
-.quick-update h3{
-    color:#000080;
-    margin-bottom:15px;
-}
-
-.quick-update label{
-    display:block;
-    margin-top:10px;
-    font-weight:bold;
-}
-
-.quick-update select,
-.quick-update input{
-    width:300px;  
-    padding:8px;
-    margin-top:5px;
-    font-size:15px;
-}
-</style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Selected Candidates – HRMS</title>
+<link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
+<nav class="top-nav">
+    <a href="#" class="nav-brand"><div class="nav-brand-icon">IH</div><div class="nav-brand-text"><b>Infinite Hunters</b><small>HRMS Portal</small></div></a>
+    <div class="nav-right"><span class="nav-role-badge badge-admin">Admin</span><a href="login.html" class="nav-link-logout">Logout</a></div>
+</nav>
+<div class="app-layout">
+    <aside class="sidebar">
+        <div class="pipeline-indicator"><h4>Pipeline</h4><div class="pipeline-steps">
+            <div class="pipeline-step done"><div class="pipeline-dot"></div> Referrals <span class="step-count">30</span></div>
+            <div class="pipeline-step done"><div class="pipeline-dot"></div> Lineup <span class="step-count">5</span></div>
+            <div class="pipeline-step active"><div class="pipeline-dot"></div> Selected <span class="step-count">3</span></div>
+            <div class="pipeline-step"><div class="pipeline-dot"></div> Onboarded <span class="step-count">3</span></div>
+        </div></div>
+        <div class="sidebar-section"><div class="sidebar-label">Dashboard</div><a href="admin-dashboard.html" class="sidebar-link"><span class="icon">📊</span> Overview</a></div>
+        <div class="sidebar-section"><div class="sidebar-label">Pipeline</div>
+            <a href="referral.html" class="sidebar-link"><span class="icon">📋</span> Referrals</a>
+            <a href="lineup.html" class="sidebar-link"><span class="icon">🎯</span> Lineup</a>
+            <a href="selected.html" class="sidebar-link active"><span class="icon">✅</span> Selected <span class="badge-count">3</span></a>
+            <a href="onboardingsample.html" class="sidebar-link"><span class="icon">🚀</span> Onboarding</a>
+            <a href="onboarded-list.html" class="sidebar-link"><span class="icon">👥</span> Employees</a>
+        </div>
+    </aside>
+    <main class="main-content">
+        <div class="page-header fade-in">
+            <div class="page-header-left">
+                <div class="page-eyebrow">Pipeline → Step 3</div>
+                <h1 class="page-title">Selected <strong>Candidates</strong></h1>
+            </div>
+            <div class="page-header-actions">
+                <button class="btn btn-outline btn-sm">📦 Export</button>
+            </div>
+        </div>
 
-<div class="container">
+        <div class="pipeline-bar fade-in d1">
+            <a href="referral.html" class="pipeline-stage"><div class="p-number">30</div><div class="p-label">Referrals</div><span class="p-arrow">›</span></a>
+            <a href="lineup.html" class="pipeline-stage"><div class="p-number">5</div><div class="p-label">Lineup</div><span class="p-arrow">›</span></a>
+            <a href="selected.html" class="pipeline-stage active"><div class="p-number">3</div><div class="p-label">Selected</div><span class="p-arrow">›</span></a>
+            <a href="onboarded-list.html" class="pipeline-stage"><div class="p-number">3</div><div class="p-label">Onboarded</div></a>
+        </div>
 
-<h2>Selected Candidates – Admin Panel</h2>
+        <div class="card fade-in d2">
+            <div class="card-header"><h3>Selected — Ready for Onboarding</h3></div>
+            <div class="card-body" style="padding:0">
+                <div class="table-wrap">
+                    <table id="candidateTable">
+                        <thead><tr><th>S.No</th><th>Name</th><th>Mobile</th><th>Designation</th><th>Client</th><th>Location</th><th>Interview Date</th><th>Status</th><th>Action</th></tr></thead>
+                        <tbody>
+                            <tr><td>1</td><td>Ravi Kumar</td><td>9876543210</td><td>Picker</td><td>Swiggy</td><td>Chennai</td><td>20-01-2026</td><td><select class="form-select" style="width:auto;padding:4px 8px;font-size:11px"><option>Selected</option><option>Onboarded</option><option>Rejected</option></select></td><td><a href="onboardingsample.html" class="btn btn-gold btn-sm">🚀 Onboard</a></td></tr>
+                            <tr><td>2</td><td>Anita Sharma</td><td>9876543211</td><td>Packer</td><td>Zomato</td><td>Chennai</td><td>21-01-2026</td><td><select class="form-select" style="width:auto;padding:4px 8px;font-size:11px"><option>Selected</option><option>Onboarded</option><option>Rejected</option></select></td><td><a href="onboardingsample.html" class="btn btn-gold btn-sm">🚀 Onboard</a></td></tr>
+                            <tr><td>3</td><td>Karthik R</td><td>9876543212</td><td>Delivery</td><td>Amazon</td><td>Chennai</td><td>22-01-2026</td><td><select class="form-select" style="width:auto;padding:4px 8px;font-size:11px"><option>Selected</option><option>Onboarded</option><option>Rejected</option></select></td><td><a href="onboardingsample.html" class="btn btn-gold btn-sm">🚀 Onboard</a></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
-<!-- DASHBOARD -->
-<div class="dashboard">
-    <div class="box"><h4>Total Referrals</h4><p>30</p></div>
-    <div class="box"><h4>Interview Line-Up</h4><p>5</p></div>
-    <div class="box"><h4>Selected</h4><p>10</p></div>
-    <div class="box"><h4>Onboarded</h4><p>3</p></div>
+        <!-- QUICK UPDATE -->
+        <div class="quick-panel fade-in d3">
+            <h3>Quick Status Update</h3>
+            <div class="form-grid">
+                <div class="form-group"><label class="form-label">Select Candidate</label>
+                    <select id="selectCandidate" class="form-select"><option value="0">Ravi Kumar</option><option value="1">Anita Sharma</option><option value="2">Karthik R</option></select></div>
+                <div class="form-group"><label class="form-label">Change Status</label>
+                    <select id="quickStatus" class="form-select"><option>Selected</option><option>Onboarded</option><option>Rejected</option></select></div>
+                <div class="form-group"><label class="form-label">Expected DOJ</label>
+                    <input type="date" id="quickDOJ" class="form-input"></div>
+            </div>
+        </div>
+    </main>
 </div>
-
-<!-- TABLE HEADING -->
-<h3 style="margin:20px 0;color:#000080;">Selected Candidates List</h3>
-
-<!-- TABLE -->
-<table id="candidateTable">
-<thead>
-<tr>
-<th>S.No</th>
-<th>Candidate Name</th>
-<th>Mobile</th>
-<th>Designation</th>
-<th>Client</th>
-<th>Location</th>
-<th>Interview Date</th>
-<th>Status</th>
-<th>Action</th>
-</tr>
-</thead>
-
-<tbody>
-<tr><td>1</td><td>Ravi Kumar</td><td>9876543210</td><td>Picker</td><td>Swiggy</td><td>Chennai</td><td>20-01-2026</td><td><select><option>Selected</option><option>Onboarded</option><option>Rejected</option></select></td><td><a href="/onboardingsample.html">
-    <button type="button">Start Onboarding</button>
-</a></td></tr>
-<tr><td>2</td><td>Anita Sharma</td><td>9876543211</td><td>Packer</td><td>Zomato</td><td>Chennai</td><td>21-01-2026</td><td><select><option>Selected</option><option>Onboarded</option><option>Rejected</option></select></td><td><a href="/onboardingsample.html">
-    <button type="button">Start Onboarding</button>
-</a></td></tr>
-<tr><td>3</td><td>Karthik R</td><td>9876543212</td><td>Delivery</td><td>Amazon</td><td>Chennai</td><td>22-01-2026</td><td><select><option>Selected</option><option>Onboarded</option><option>Rejected</option></select></td><td><a href="/onboardingsample.html">
-    <button type="button">Start Onboarding</button>
-</a></tr>
-<tr><td>4</td><td>Priya S</td><td>9876543213</td><td>Picker</td><td>BigBasket</td><td>Chennai</td><td>23-01-2026</td><td><select><option>Selected</option><option>Onboarded</option><option>Rejected</option></select></td><td><a href="/onboardingsample.html">
-    <button type="button">Start Onboarding</button>
-</a></td></tr>
-<tr><td>5</td><td>Arjun V</td><td>9876543214</td><td>Packer</td><td>Dunzo</td><td>Chennai</td><td>24-01-2026</td><td><select><option>Selected</option><option>Onboarded</option><option>Rejected</option></select></td><td><a href="/onboardingsample.html">
-    <button type="button">Start Onboarding</button>
-</a></td></tr>
-<tr><td>6</td><td>Sneha K</td><td>9876543215</td><td>Delivery</td><td>Flipkart</td><td>Chennai</td><td>25-01-2026</td><td><select><option>Selected</option><option>Onboarded</option><option>Rejected</option></select></td><td><a href="/onboardingsample.html">
-    <button type="button">Start Onboarding</button>
-</a></td></tr>
-<tr><td>7</td><td>Manish T</td><td>9876543216</td><td>Picker</td><td>Swiggy</td><td>Chennai</td><td>26-01-2026</td><td><select><option>Selected</option><option>Onboarded</option><option>Rejected</option></select></td><td><a href="/onboardingsample.html">
-    <button type="button">Start Onboarding</button>
-</a></td></tr>
-<tr><td>8</td><td>Rohit P</td><td>9876543217</td><td>Packer</td><td>Zomato</td><td>Chennai</td><td>27-01-2026</td><td><select><option>Selected</option><option>Onboarded</option><option>Rejected</option></select></td><td><a href="/onboardingsample.html">
-    <button type="button">Start Onboarding</button>
-</a></td></tr>
-<tr><td>9</td><td>Shreya N</td><td>9876543218</td><td>Delivery</td><td>Amazon</td><td>Chennai</td><td>28-01-2026</td><td><select><option>Selected</option><option>Onboarded</option><option>Rejected</option></select></td><td><a href="/onboardingsample.html">
-    <button type="button">Start Onboarding</button>
-</a></td></tr>
-<tr><td>10</td><td>Vikram L</td><td>9876543219</td><td>Picker</td><td>BigBasket</td><td>Chennai</td><td>29-01-2026</td><td><select><option>Selected</option><option>Onboarded</option><option>Rejected</option></select></td><td><a href="/onboardingsample.html">
-    <button type="button">Start Onboarding</button>
-</a></td></tr>
-</tbody>
-</table>
-
-<!-- QUICK UPDATE -->
-<div class="quick-update">
-<h3>Quick Update (Optional)</h3>
-
-<label>Select Candidate *</label>
-<select id="selectCandidate">
-    <option value="0">Ravi Kumar</option>
-    <option value="1">Anita Sharma</option>
-    <option value="2">Karthik R</option>
-    <option value="3">Priya S</option>
-    <option value="4">Arjun V</option>
-    <option value="5">Sneha K</option>
-    <option value="6">Manish T</option>
-    <option value="7">Rohit P</option>
-    <option value="8">Shreya N</option>
-    <option value="9">Vikram L</option>
-</select>
-
-<label>Change Status *</label>
-<select id="quickStatus">
-    <option>Selected</option>
-    <option>Onboarded</option>
-    <option>Rejected</option>
-</select>
-
-<label>Expected DOJ</label>
-<input type="date" id="quickDOJ">
-</div>
-
-</div>
-
 <script>
-const candidateSelect = document.getElementById('selectCandidate');
-const quickStatus = document.getElementById('quickStatus');
-const quickDOJ = document.getElementById('quickDOJ');
-const tableRows = document.querySelectorAll('#candidateTable tbody tr');
-
-function updateRow(index){
-    const row = tableRows[index];
-    row.querySelector('td:nth-child(7)').textContent = quickDOJ.value;
-    row.querySelector('td:nth-child(8) select').value = quickStatus.value;
-}
-
-// Update when status or date changes
-quickStatus.addEventListener('change', () => updateRow(candidateSelect.value));
-quickDOJ.addEventListener('change', () => updateRow(candidateSelect.value));
-
-// Update when candidate selection changes (optional: keep last entered values)
-candidateSelect.addEventListener('change', () => updateRow(candidateSelect.value));
+const cs=document.getElementById('selectCandidate'),qs=document.getElementById('quickStatus'),qd=document.getElementById('quickDOJ'),rows=document.querySelectorAll('#candidateTable tbody tr');
+function up(i){const r=rows[i];if(qd.value)r.querySelector('td:nth-child(7)').textContent=qd.value;r.querySelector('td:nth-child(8) select').value=qs.value;}
+qs.addEventListener('change',()=>up(cs.value));
+qd.addEventListener('change',()=>up(cs.value));
 </script>
-
 </body>
 </html>

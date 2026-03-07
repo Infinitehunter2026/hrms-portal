@@ -2,133 +2,49 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Infinite Hunters – HRMS Login</title>
-
-<style>
-/* Global settings */
-body {
-    font-family: "Times New Roman", Times, serif;
-    background: #f2f4f7;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-}
-
-/* Login box */
-.login-box {
-    background: #fff;
-    padding: 45px 40px;
-    border-radius: 10px;
-    width: 450px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-}
-
-/* Heading */
-h2 {
-    text-align: center;
-    color: #000080;
-    font-size: 22px;
-    margin-bottom: 30px;
-}
-
-/* Labels */
-label {
-    font-weight: bold;
-    display: block;
-    margin-top: 18px;
-    font-size: 18px;
-    color: #000080;
-}
-
-/* Inputs */
-input, select {
-    width: 100%;
-    padding: 14px;
-    margin-top: 6px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 18px;
-    color: #000; 
-    box-sizing: border-box;
-}
-
-/* Button */
-button {
-    width: 100%;
-    padding: 14px;
-    margin-top: 25px;
-    background: #000080;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    font-size: 18px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-button:hover {
-    background: #000060;
-}
-
-/* Error messages */
-.error {
-    color: red;
-    font-size: 14px;
-    margin-top: 5px;
-}
-
-/* Footer */
-.footer {
-    text-align: center;
-    font-size: 13px;
-    margin-top: 25px;
-    color: #666;
-}
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-
-<div class="login-box">
-    <h2>HRMS Login</h2>
-
-    <form onsubmit="loginUser(); return false;">
-
-
-        <label>User ID *</label>
-        <select id="userId" name="userId">
-            <option value="">--Select User--</option>
-            <option value="superadmin">Super Admin</option>
-            <option value="admin">Admin</option>
-            <option value="employee">Employee</option>
-        </select>
-        <div id="userError" class="error"></div>
-        <label>Password *</label>
-<input type="password" id="password" name="password">
-
-        
-        <div id="passError" class="error"></div>
-
-        <div id="loginError" class="error"></div>
-
-        <button type="submit">Login</button>
-
-    </form>
-
-    <div class="footer">
-        © Infinite Hunters Multi Service Pvt. Ltd.
+<div class="login-wrap">
+    <div class="login-bg"></div>
+    <div class="login-grid-bg"></div>
+    <div class="login-box">
+        <div class="login-logo">
+            <div class="login-logo-icon">IH</div>
+            <h2>HRMS Portal</h2>
+            <p>Infinite Hunters Multi Service</p>
+        </div>
+        <form onsubmit="loginUser(); return false;">
+            <div class="form-group">
+                <label class="form-label">User ID *</label>
+                <select id="userId" class="form-select" required>
+                    <option value="">— Select User —</option>
+                    <option value="superadmin">Super Admin</option>
+                    <option value="admin">Admin (Onboarding Team)</option>
+                    <option value="employee">Employee</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Password *</label>
+                <input type="password" id="password" class="form-input" placeholder="Enter your password">
+            </div>
+            <div id="loginError" style="color:var(--red);font-size:12px;margin-bottom:10px"></div>
+            <button type="submit" class="btn btn-gold" style="width:100%;padding:12px;">Login →</button>
+        </form>
+        <div class="login-footer">© Infinite Hunters Multi Service Pvt. Ltd.</div>
     </div>
 </div>
 <script>
 function loginUser() {
-    // Temporary demo login (no backend yet)
-    window.location.href = "referral.html";
+    const role = document.getElementById('userId').value;
+    if (!role) { document.getElementById('loginError').textContent = 'Please select a user role'; return; }
+    // Role-aware redirect
+    if (role === 'superadmin') window.location.href = 'superadmin-dashboard.html';
+    else if (role === 'admin') window.location.href = 'admin-dashboard.html';
+    else if (role === 'employee') window.location.href = 'employee-dashboard.html';
 }
 </script>
-
-
-
 </body>
 </html>

@@ -1,207 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Employee Dashboard</title>
-
-<style>
-:root {
-    --navy: #0a3d62;
-    --bg: #f4f6f9;
-    --border: #d6dde6;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: var(--bg);
-    color: #1f2937;
-}
-
-/* TOP NAVBAR */
-nav {
-    background: var(--navy);
-    padding: 14px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-nav .brand {
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 20px;
-    font-size: 14px;
-    font-weight: bold;
-}
-
-/* LAYOUT */
-.wrapper {
-    display: flex;
-    min-height: calc(100vh - 60px);
-}
-
-/* SIDEBAR */
-.sidebar {
-    width: 220px;
-    background: white;
-    border-right: 1px solid var(--border);
-    padding-top: 20px;
-}
-
-.sidebar a {
-    display: block;
-    padding: 14px 24px;
-    color: var(--navy);
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 14px;
-}
-
-.sidebar a:hover {
-    background: #eef3f8;
-}
-
-/* CONTENT */
-.content {
-    flex: 1;
-    padding: 40px;
-}
-
-/* TITLE */
-.page-title {
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    color: var(--navy);
-    margin-bottom: 35px;
-}
-
-/* CARDS */
-.cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    max-width: 900px;
-    margin: auto;
-}
-
-.card {
-    background: var(--navy);
-    border-radius: 8px;
-    padding: 40px 25px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-}
-
-/* 👇 CAPS + WHITE */
-.card h3 {
-    margin-bottom: 12px;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-}
-
-.card p {
-    font-size: 13px;
-    color: #ffffff;
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
-}
-
-/* BUTTON */
-.card a {
-    display: inline-block;
-    margin-top: 18px;
-    padding: 9px 22px;
-    border: 1px solid white;
-    border-radius: 4px;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-}
-
-.card a:hover {
-    background: white;
-    color: var(--navy);
-}
-</style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Employee Dashboard – HRMS</title>
+<link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-
-<!-- TOP BAR -->
-<nav>
-    <div class="brand">INFINITE HUNTERS – HRMS</div>
-    <div>
-        <a href="/logout" style="color:#ffd700;">Logout</a>
+<nav class="top-nav">
+    <a href="#" class="nav-brand"><div class="nav-brand-icon">IH</div><div class="nav-brand-text"><b>Infinite Hunters</b><small>HRMS Portal</small></div></a>
+    <div class="nav-right">
+        <span class="nav-role-badge badge-employee">Employee</span>
+        <a href="login.html" class="nav-link-logout">Logout</a>
     </div>
 </nav>
-
-<div class="wrapper">
-
-<!-- SIDEBAR -->
-<div class="sidebar">
-    <a href="/employee-dashboard">Dashboard</a>
-    <a id="menuPayslip" href="/payslip">Payslip</a>
-    <a id="menuOffer" href="/offer-letter">Offer Letter</a>
-    <a id="menuTicket" href="/ticket">Ticket</a>
-</div>
-
-<!-- CONTENT -->
-<div class="content">
-
-    <div class="page-title">WELCOME, EMPLOYEE</div>
-
-    <div class="cards">
-        <div class="card">
-            <h3>Payslip</h3>
-            <p>View and download your monthly payslips</p>
-            <a href="/payslip">View Payslip</a>
+<div class="app-layout">
+    <aside class="sidebar">
+        <div class="sidebar-section">
+            <div class="sidebar-label">My Portal</div>
+            <a href="employee-dashboard.html" class="sidebar-link active"><span class="icon">📊</span> Dashboard</a>
+            <a href="payslip.html" class="sidebar-link"><span class="icon">💰</span> Payslip</a>
+            <a href="offer-letter.html" class="sidebar-link"><span class="icon">📄</span> Offer Letter</a>
+            <a href="ticket.html" class="sidebar-link"><span class="icon">🎫</span> Raise Ticket</a>
+            <a href="bank-change.html" class="sidebar-link"><span class="icon">🏦</span> Bank Change</a>
+        </div>
+    </aside>
+    <main class="main-content">
+        <div class="page-header fade-in">
+            <div class="page-header-left">
+                <div class="page-eyebrow">Employee Portal</div>
+                <h1 class="page-title">Welcome, <strong>Employee</strong></h1>
+            </div>
         </div>
 
-        <div class="card">
-            <h3>Offer Letter</h3>
-            <p>Access your offer and appointment letters</p>
-            <a href="/offer-letter">View Offer</a>
+        <!-- ONBOARDING STATUS -->
+        <div class="card fade-in d1" style="margin-bottom:20px">
+            <div class="card-header"><h3>Onboarding Status</h3><span class="status-badge status-onboarded">Complete</span></div>
+            <div class="card-body">
+                <div style="display:flex;gap:24px;flex-wrap:wrap">
+                    <div><span style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)">Date of Joining</span><br><strong>01-02-2026</strong></div>
+                    <div><span style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)">Client</span><br><strong>Swiggy Instamart</strong></div>
+                    <div><span style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)">Designation</span><br><strong>Picker</strong></div>
+                    <div><span style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)">Location</span><br><strong>Chennai, Tamil Nadu</strong></div>
+                </div>
+            </div>
         </div>
 
-        <div class="card">
-            <h3>Support Ticket</h3>
-            <p>Raise and track HR support requests</p>
-            <a href="/ticket">Raise Ticket</a>
+        <!-- ACTION CARDS -->
+        <div class="action-grid fade-in d2">
+            <div class="action-card">
+                <div class="action-icon">💰</div>
+                <div class="action-title">Payslip</div>
+                <p class="action-desc">View and download monthly payslips</p>
+                <a href="payslip.html" class="action-btn">View →</a>
+            </div>
+            <div class="action-card">
+                <div class="action-icon">📄</div>
+                <div class="action-title">Offer Letter</div>
+                <p class="action-desc">Download your offer & appointment letters</p>
+                <a href="offer-letter.html" class="action-btn">View →</a>
+            </div>
+            <div class="action-card">
+                <div class="action-icon">🎫</div>
+                <div class="action-title">Support Ticket</div>
+                <p class="action-desc">Raise and track HR support requests</p>
+                <a href="ticket.html" class="action-btn">Raise →</a>
+            </div>
+            <div class="action-card">
+                <div class="action-icon">🏦</div>
+                <div class="action-title">Bank Change</div>
+                <p class="action-desc">Request bank account update</p>
+                <a href="bank-change.html" class="action-btn">Request →</a>
+            </div>
         </div>
-    </div>
-
+    </main>
 </div>
-</div>
-
-<script>
-fetch('/api/me')
-  .then(res => res.json())
-  .then(data => applyMenuRules(data.role));
-
-function applyMenuRules(role) {
-    if (role !== "EMPLOYEE") {
-        window.location.href = "/access-denied";
-    }
-}
-</script>
-
 </body>
 </html>

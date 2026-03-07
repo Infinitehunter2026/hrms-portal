@@ -1,116 +1,72 @@
-<style>
-:root {
-    --navy: #0a3d62;
-    --bg: #f4f6f9;
-    --border: #d6dde6;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Onboarded Employees – HRMS</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="top-nav">
+    <a href="#" class="nav-brand"><div class="nav-brand-icon">IH</div><div class="nav-brand-text"><b>Infinite Hunters</b><small>HRMS Portal</small></div></a>
+    <div class="nav-right"><span class="nav-role-badge badge-admin">Admin</span><a href="login.html" class="nav-link-logout">Logout</a></div>
+</nav>
+<div class="app-layout">
+    <aside class="sidebar">
+        <div class="pipeline-indicator"><h4>Pipeline</h4><div class="pipeline-steps">
+            <div class="pipeline-step done"><div class="pipeline-dot"></div> Referrals <span class="step-count">30</span></div>
+            <div class="pipeline-step done"><div class="pipeline-dot"></div> Lineup <span class="step-count">5</span></div>
+            <div class="pipeline-step done"><div class="pipeline-dot"></div> Selected <span class="step-count">3</span></div>
+            <div class="pipeline-step active"><div class="pipeline-dot"></div> Onboarded <span class="step-count">3</span></div>
+        </div></div>
+        <div class="sidebar-section"><div class="sidebar-label">Dashboard</div><a href="admin-dashboard.html" class="sidebar-link"><span class="icon">📊</span> Overview</a></div>
+        <div class="sidebar-section"><div class="sidebar-label">Pipeline</div>
+            <a href="referral.html" class="sidebar-link"><span class="icon">📋</span> Referrals</a>
+            <a href="lineup.html" class="sidebar-link"><span class="icon">🎯</span> Lineup</a>
+            <a href="selected.html" class="sidebar-link"><span class="icon">✅</span> Selected</a>
+            <a href="onboardingsample.html" class="sidebar-link"><span class="icon">🚀</span> Onboarding</a>
+            <a href="onboarded-list.html" class="sidebar-link active"><span class="icon">👥</span> Employees <span class="badge-count">3</span></a>
+        </div>
+    </aside>
+    <main class="main-content">
+        <div class="page-header fade-in">
+            <div class="page-header-left">
+                <div class="page-eyebrow">Pipeline → Final</div>
+                <h1 class="page-title">Onboarded <strong>Employees</strong></h1>
+            </div>
+            <div class="page-header-actions">
+                <button class="btn btn-outline btn-sm" onclick="alert('Exported to CSV')">📦 Export CSV</button>
+            </div>
+        </div>
 
-body {
-    font-family: Arial, sans-serif;
-    background: var(--bg);
-    margin: 0;
-}
+        <div class="pipeline-bar fade-in d1">
+            <a href="referral.html" class="pipeline-stage"><div class="p-number">30</div><div class="p-label">Referrals</div><span class="p-arrow">›</span></a>
+            <a href="lineup.html" class="pipeline-stage"><div class="p-number">5</div><div class="p-label">Lineup</div><span class="p-arrow">›</span></a>
+            <a href="selected.html" class="pipeline-stage"><div class="p-number">3</div><div class="p-label">Selected</div><span class="p-arrow">›</span></a>
+            <a href="onboarded-list.html" class="pipeline-stage active"><div class="p-number">3</div><div class="p-label">Onboarded</div></a>
+        </div>
 
-/* TOP NAV */
-.top-nav {
-    background: var(--navy);
-    padding: 12px;
-    text-align: center;
-}
+        <div class="filter-bar fade-in d2">
+            <input type="text" class="search-input" placeholder="Search employees...">
+            <select class="filter-select"><option value="">All Clients</option><option>Swiggy</option><option>Zepto</option></select>
+            <select class="filter-select"><option value="">All Payroll</option><option>Contractual</option><option>NAPS</option></select>
+        </div>
 
-.top-nav a {
-    color: white;
-    margin: 0 14px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 14px;
-}
-
-.top-nav a:hover {
-    text-decoration: underline;
-}
-
-/* CONTENT */
-.content {
-    padding: 30px;
-}
-
-/* PAGE TITLE */
-.content h2 {
-    text-align: center;
-    color: var(--navy);
-    margin-bottom: 25px;
-    font-size: 22px;
-}
-
-/* CARD */
-.card {
-    background: white;
-    max-width: 1000px;
-    margin: auto;
-    padding: 25px;
-    border-radius: 6px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-}
-
-/* TABLE */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-th {
-    background: var(--navy);
-    color: white;
-    text-align: left;
-    padding: 12px;
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-td {
-    padding: 12px;
-    font-size: 14px;
-    border-bottom: 1px solid var(--border);
-}
-
-tr:hover td {
-    background: #f1f5f9;
-}
-</style>
-
-<div class="content">
-  <h2>Onboarded Employees</h2>
-
-  <div class="card">
-
-    <nav class="top-nav">
-        <a href="/referral">Referral</a>
-        <a href="/lineup">Line-up</a>
-        <a href="/onboardingsample">Onboarding</a>
-        <a href="/onboarded-list">Onboarded</a>
-        <a href="/bank-change">Bank Change</a>
-        <a href="/logout" style="color:#ffd700;">Logout</a>
-    </nav>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Client</th>
-          <th>Date of Joining</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Arun</td>
-          <td>Swiggy</td>
-          <td>01-02-2026</td>
-        </tr>
-      </tbody>
-    </table>
-
-  </div>
+        <div class="card fade-in d3">
+            <div class="card-header"><h3>Employee Directory</h3></div>
+            <div class="card-body" style="padding:0">
+                <div class="table-wrap">
+                    <table>
+                        <thead><tr><th>Name</th><th>Mobile</th><th>Client</th><th>Designation</th><th>Location</th><th>Payroll</th><th>DOJ</th><th>Docs</th><th>Action</th></tr></thead>
+                        <tbody>
+                            <tr><td>Arun Kumar</td><td>9876543210</td><td>Swiggy</td><td>Picker</td><td>Chennai</td><td>Contractual</td><td>01-02-2026</td><td><span class="status-badge status-onboarded">Complete</span></td><td><button class="btn btn-ghost btn-sm">View</button></td></tr>
+                            <tr><td>Priya S</td><td>9876543213</td><td>BigBasket</td><td>Picker</td><td>Chennai</td><td>NAPS</td><td>05-02-2026</td><td><span class="status-badge status-onboarded">Complete</span></td><td><button class="btn btn-ghost btn-sm">View</button></td></tr>
+                            <tr><td>Arjun V</td><td>9876543214</td><td>Zomato</td><td>Packer</td><td>Bangalore</td><td>Contractual</td><td>08-02-2026</td><td><span class="status-badge status-selected">1 Missing</span></td><td><button class="btn btn-ghost btn-sm">View</button></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
 </div>
+</body>
+</html>
