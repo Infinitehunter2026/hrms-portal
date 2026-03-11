@@ -1,12 +1,26 @@
-/* Mobile Responsive Design */
+/* Mobile Safe Area Fix (camera / notch) */
 
 body {
     margin: 0;
-    padding: 0;
+    padding-top: 25px;
+    padding-left: 12px;
+    padding-right: 12px;
     width: 100%;
+    font-size: 14px;
+}
+
+/* Main Layout Spacing */
+
+.app-layout {
+    margin-top: 10px;
+}
+
+.main-content {
+    padding: 10px;
 }
 
 /* Make containers responsive */
+
 .container,
 .main-container,
 .dashboard,
@@ -18,12 +32,14 @@ body {
 }
 
 /* Images responsive */
+
 img {
     max-width: 100%;
     height: auto;
 }
 
 /* Tables responsive */
+
 table {
     width: 100%;
     overflow-x: auto;
@@ -31,6 +47,7 @@ table {
 }
 
 /* Buttons responsive */
+
 button {
     width: 100%;
     padding: 12px;
@@ -38,6 +55,7 @@ button {
 }
 
 /* Inputs responsive */
+
 input,
 select,
 textarea {
@@ -46,7 +64,20 @@ textarea {
     font-size: 16px;
 }
 
-/* Mobile layout */
+/* Cards spacing (dashboard look better on mobile) */
+
+.card {
+    margin-bottom: 16px;
+}
+
+/* Quick action buttons spacing */
+
+.quick-actions button {
+    margin-bottom: 10px;
+}
+
+/* Mobile Layout */
+
 @media (max-width: 768px) {
 
     body {
@@ -54,6 +85,7 @@ textarea {
     }
 
     .row {
+        display: flex;
         flex-direction: column;
     }
 
