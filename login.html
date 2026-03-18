@@ -4,48 +4,145 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Infinite Hunters – HRMS Login</title>
+
 <link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="css/mobile.css">
+
 </head>
+
 <body>
+
 <div class="login-wrap">
     <div class="login-bg"></div>
     <div class="login-grid-bg"></div>
+
     <div class="login-box">
+
         <div class="login-logo">
             <div class="login-logo-icon">IH</div>
             <h2>HRMS Portal</h2>
             <p>Infinite Hunters Multi Service</p>
         </div>
+
         <form onsubmit="loginUser(); return false;">
+
+            <!-- ROLE -->
             <div class="form-group">
-                <label class="form-label">User ID *</label>
-                <select id="userId" class="form-select" required>
+                <label class="form-label">User Role *</label>
+                <select id="userId" class="form-select" required onchange="handleRoleChange()">
                     <option value="">— Select User —</option>
                     <option value="superadmin">Super Admin</option>
                     <option value="admin">Admin (Onboarding Team)</option>
                     <option value="employee">Employee</option>
                 </select>
             </div>
+
+            <!-- ✅ EMPLOYEE ID INPUT -->
+            <div class="form-group" id="employeeField" style="display:none;">
+                <label class="form-label">Employee ID *</label>
+                <input 
+                    type="text" 
+                    id="employeeId" 
+                    class="form-input"
+                    placeholder="Enter Employee ID (e.g., EMP001)"
+                    pattern="EMP[0-9]{3}"
+                    title="Enter valid ID like EMP001">
+            </div>
+
+            <!-- PASSWORD -->
             <div class="form-group">
                 <label class="form-label">Password *</label>
-                <input type="password" id="password" class="form-input" placeholder="Enter your password">
+                <input 
+                    type="password" 
+                    id="password" 
+                    class="form-input" 
+                    placeholder="Enter your password" 
+                    required>
             </div>
-            <div id="loginError" style="color:var(--red);font-size:12px;margin-bottom:10px"></div>
-            <button type="submit" class="btn btn-gold" style="width:100%;padding:12px;">Login →</button>
+
+            <!-- ERROR -->
+            <div id="loginError" style="color:red;font-size:12px;margin-bottom:10px"></div>
+
+            <!-- BUTTON -->
+            <button type="submit" class="btn btn-gold" style="width:100%;padding:12px;">
+                Login →
+            </button>
+
         </form>
-        <div class="login-footer">© Infinite Hunters Multi Service Pvt. Ltd.</div>
+
+        <div class="login-footer">
+            © Infinite Hunters Multi Service Pvt. Ltd.
+        </div>
+
     </div>
 </div>
+
+<!-- SCRIPT -->
 <script>
-function loginUser() {
-    const role = document.getElementById('userId').value;
-    if (!role) { document.getElementById('loginError').textContent = 'Please select a user role'; return; }
-    // Role-aware redirect
-    if (role === 'superadmin') window.location.href = 'superadmin-dashboard.html';
-    else if (role === 'admin') window.location.href = 'admin-dashboard.html';
-    else if (role === 'employee') window.location.href = 'employee-dashboard.html';
+
+function handleRoleChange() {
+
+    var role = document.getElementById("userId").value;
+
+    if (role === "employee") {
+        document.getElementById("employeeField").style.display = "block";
+    } else {
+        document.getElementById("employeeField").style.display = "none";
+    }
 }
+
+function loginUser() {
+
+    var role = document.getElementById("userId").value;
+    var empId = document.getElementById("employeeId").value;
+    var password = document.getElementById("password").value;
+
+    // CLEAR ERROR
+    document.getElementById("loginError").textContent = "";
+
+    // VALIDATION
+    if (!role) {
+        document.getElementById("loginError").textContent = "Please select a user role";
+        return;
+    }
+
+    if (!password) {
+        document.getElementById("loginError").textContent = "Please enter password";
+        return;
+    }
+
+    // EMPLOYEE LOGIN
+    if (role === "employee") {
+
+        if (!empId) {
+            document.getElementById("loginError").textContent = "Please enter Employee ID";
+            return;
+        }
+
+        // FORMAT CHECK
+        var regex = /^EMP[0-9]{3}$/;
+        if (!regex.test(empId)) {
+            document.getElementById("loginError").textContent = "Invalid Employee ID (Example: EMP001)";
+            return;
+        }
+
+        // ✅ PASS ID TO FLUTTER
+        window.location.href = "employee-dashboard.html?empId=" + empId;
+    }
+
+    // ADMIN LOGIN
+    else if (role === "admin") {
+        window.location.href = "admin-dashboard.html";
+    }
+
+    // SUPER ADMIN LOGIN
+    else if (role === "superadmin") {
+        window.location.href = "superadmin-dashboard.html";
+    }
+
+}
+
 </script>
+
 </body>
 </html>
